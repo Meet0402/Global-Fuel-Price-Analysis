@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1324">
+<meta name="description" content="MEET JAIN — Global Fuel Prices & Taxation Trends, an interactive data analytics project covering 2020–2026.">
+<title>Global Fuel Prices & Taxation Trends | Meet Jain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f8fb;--paper:#fff;--ink:#132238;--muted:#627187;--navy:#0b1324;--navy2:#14243b;--blue:#5b8cff;--cyan:#55d6c2;--gold:#ffbf58;--line:#e4eaf2;--radius:20px;--shadow:0 16px 45px rgba(17,34,56,.08}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.65}a{color:inherit;text-decoration:none}button{font:inherit}
+.navbar{position:sticky;top:0;z-index:20;background:rgba(11,19,36,.96);backdrop-filter:blur(14px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-inner{max-width:1240px;margin:auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:flex;align-items:center;gap:11px;font:800 13px Manrope,sans-serif;letter-spacing:.11em;white-space:nowrap}
+.brand-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#0b1324;font-weight:900}
+.nav-links{display:flex;align-items:center;gap:clamp(12px,2.2vw,28px);font-size:12px;color:#c4d0e1}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+.menu-toggle{display:none;background:none;color:white;border:1px solid #34445b;border-radius:10px;padding:7px 11px}
+.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 82% 18%,rgba(91,140,255,.24),transparent 32%),radial-gradient(ellipse at 12% 95%,rgba(85,214,194,.13),transparent 35%),linear-gradient(125deg,#0b1324,#14243b 75%,#1a3150);color:#fff}
+.hero:after{content:"";position:absolute;width:440px;height:440px;border:1px solid rgba(255,255,255,.08);border-radius:50%;right:-130px;bottom:-250px;box-shadow:0 0 0 45px rgba(255,255,255,.025),0 0 0 95px rgba(255,255,255,.02)}
+.hero-inner{max-width:1240px;margin:auto;padding:clamp(65px,9vw,112px) 24px 72px;position:relative;z-index:1}
+.kicker{display:flex;align-items:center;gap:10px;text-transform:uppercase;font-size:11px;font-weight:800;letter-spacing:.16em;color:var(--cyan)}
+.kicker:before{content:"";width:24px;height:2px;background:currentColor}
+h1,h2,h3{font-family:Manrope,sans-serif;line-height:1.13;letter-spacing:-.04em}
+h1{font-size:clamp(40px,7.2vw,82px);max-width:900px;margin:22px 0 18px;font-weight:800}
+h1 span{color:var(--cyan)}
+.hero-copy{max-width:690px;color:#c4d0e1;font-size:clamp(15px,1.8vw,18px);margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 19px;border-radius:999px;font-size:13px;font-weight:800;transition:.2s transform,.2s background}
+.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--cyan);color:#0b1324}.btn-secondary{border:1px solid #40516a;color:#fff}
+.hero-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;max-width:940px;margin-top:58px}
+.meta-item{padding:15px 0 0;border-top:1px solid rgba(255,255,255,.18)}.meta-item strong{display:block;font:800 clamp(19px,2.6vw,27px) Manrope,sans-serif}.meta-item span{font-size:11px;color:#aebdd0}
+main{max-width:1240px;margin:auto;padding:68px 24px}
+.section{margin-bottom:74px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:25px}
+.section-head h2{font-size:clamp(29px,4vw,43px);margin:9px 0 0}.section-head p{max-width:490px;margin:0;color:var(--muted);font-size:14px}
+.overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.feature{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:25px;box-shadow:0 7px 24px rgba(17,34,56,.035)}
+.feature-icon{width:43px;height:43px;border-radius:13px;display:grid;place-items:center;background:#e9f8f5;color:#168b7b;font-size:21px}
+.feature h3{font-size:18px;margin:18px 0 8px}.feature p{font-size:13px;color:var(--muted);margin:0}
+.question-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.question{padding:23px;border-radius:var(--radius);background:#eaf0fb;border:1px solid #dce6f7}.question:nth-child(2){background:#e8f6f2;border-color:#d8eee8}.question:nth-child(3){background:#fff3df;border-color:#f7e7c8}
+.q-num{font:800 12px Manrope,sans-serif;letter-spacing:.1em;color:#5074bb}.question:nth-child(2) .q-num{color:#168b7b}.question:nth-child(3) .q-num{color:#a36b12}
+.question h3{font-size:19px;margin:11px 0 8px}.question p{font-size:13px;color:#5f6d80;margin:0}
+.chart-card{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}
+.chart-head{padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:18px;border-bottom:1px solid var(--line)}
+.chart-head h3{font-size:20px;margin:0 0 4px}.chart-head p{margin:0;color:var(--muted);font-size:12px}
+.pill{background:#e9f8f5;color:#147c70;border-radius:999px;padding:7px 11px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.tableau-frame{width:100%;height:clamp(650px,78vw,1050px);border:0;display:block;background:#fff}
+.tableau-frame.story{height:clamp(650px,80vw,1000px)}
+.chart-note{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 23px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
+.chart-note a{color:#376fda;font-weight:700}
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.method{background:#fff;border:1px solid var(--line);border-radius:17px;padding:22px}.method h3{font-size:16px;margin:0 0 8px}.method p{font-size:13px;color:var(--muted);margin:0}
+.outcomes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.outcome{padding:26px;border-radius:20px;background:var(--navy);color:#fff}.outcome:nth-child(2){background:#172c45}
+.outcome small{color:var(--cyan);font-weight:800;letter-spacing:.12em}.outcome h3{font-size:21px;margin:12px 0 8px}.outcome p{font-size:13px;color:#c0ccdc;margin:0}
+.faq{display:grid;gap:10px}.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:17px 20px}.faq summary{cursor:pointer;font-weight:800;font-size:14px}.faq details p{color:var(--muted);font-size:13px;margin:12px 0 0}
+.cta{display:flex;justify-content:space-between;align-items:center;gap:30px;background:linear-gradient(120deg,#0b1324,#1a3150);color:#fff;border-radius:24px;padding:clamp(28px,5vw,52px)}
+.cta h2{font-size:clamp(26px,4vw,38px);margin:10px 0}.cta p{max-width:680px;color:#c0ccdc;margin:0;font-size:14px}.signature{font:800 clamp(17px,2.5vw,24px) Manrope,sans-serif;color:var(--gold);white-space:nowrap;letter-spacing:.06em}
+footer{border-top:1px solid var(--line);padding:22px 24px;color:#718096;font-size:11px}.footer-inner{max-width:1240px;margin:auto;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+@media(max-width:800px){.nav-links{gap:12px;font-size:11px}.hero-meta{grid-template-columns:repeat(2,1fr)}.overview-grid,.question-grid,.method-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:12px}.outcomes{grid-template-columns:1fr}.cta{display:block}.signature{margin-top:24px}}
+@media(max-width:600px){.nav-inner{padding:12px 16px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;left:0;right:0;top:61px;padding:14px 20px 20px;background:#0b1324;border-top:1px solid #26364c;flex-direction:column;align-items:stretch;font-size:13px}.nav-links.open{display:flex}.hero-inner{padding:60px 20px 55px}main{padding:48px 14px}.section{margin-bottom:54px}.chart-head{padding:18px}.pill{display:none}.tableau-frame,.tableau-frame.story{height:850px}.chart-note{padding:13px 17px}.hero-meta{margin-top:42px}.hero-meta .meta-item strong{font-size:21px}}
+</style>
+</head>
+<body>
+<header class="navbar">
+  <div class="nav-inner">
+    <a class="brand" href="#top"><span class="brand-icon">MJ</span><span>MEET JAIN</span></a>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" id="menuToggle">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#overview">Overview</a><a href="#themes">Key Themes</a><a href="#dashboard">Dashboard</a><a href="#story">Story</a><a href="#methodology">Methodology</a><a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="kicker">Data Analytics Project · 2020–2026</div>
+    <h1>Global Fuel Prices<br><span>& Taxation Trends</span></h1>
+    <p class="hero-copy">An interactive exploration of fuel-price movements and taxation patterns across countries. Discover how prices change over time, compare international markets, and explore the factors that shape what consumers pay.</p>
+    <div class="actions"><a class="btn btn-primary" href="#dashboard">Explore Dashboard ↓</a><a class="btn btn-secondary" href="#story">View Data Story ↗</a></div>
+    <div class="hero-meta">
+      <div class="meta-item"><strong>2020–2026</strong><span>Period covered</span></div>
+      <div class="meta-item"><strong>Global</strong><span>International perspective</span></div>
+      <div class="meta-item"><strong>Interactive</strong><span>Explore Tableau views</span></div>
+      <div class="meta-item"><strong>Evidence-led</strong><span>Compare before concluding</span></div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="section" id="overview">
+    <div class="section-head"><div><div class="kicker" style="color:#188b7b">Project Overview</div><h2>Understanding the changing<br>cost of fuel</h2></div><p>Fuel prices influence household budgets, transportation, business operations, and economic activity. Comparing countries and time periods helps reveal how market conditions and policy can contribute to differences.</p></div>
+    <div class="overview-grid">
+      <article class="feature"><div class="feature-icon">↗</div><h3>Price trends over time</h3><p>Explore movements from 2020 to 2026 and identify periods of increase, decline, or relative stability.</p></article>
+      <article class="feature"><div class="feature-icon">◎</div><h3>Country comparison</h3><p>Compare country-level values and see how a global average can hide local variation.</p></article>
+      <article class="feature"><div class="feature-icon">▤</div><h3>Taxation perspective</h3><p>Consider taxes alongside international energy prices, currency movements, and domestic market factors.</p></article>
+    </div>
+  </section>
+
+  <section class="section" id="themes">
+    <div class="section-head"><div><div class="kicker" style="color:#537ed8">Analytical Themes</div><h2>Questions to explore</h2></div><p>Use the visualizations as exploratory tools. Look for patterns, then interpret them with context rather than assuming a single cause.</p></div>
+    <div class="question-grid">
+      <article class="question"><div class="q-num">01 / VARIATION</div><h3>How do prices vary?</h3><p>Compare countries and check whether price gaps persist or change throughout the period.</p></article>
+      <article class="question"><div class="q-num">02 / TIMING</div><h3>When do trends shift?</h3><p>Follow the timeline and inspect chart tooltips around notable rises, falls, and turning points.</p></article>
+      <article class="question"><div class="q-num">03 / CONTEXT</div><h3>What may explain differences?</h3><p>Consider taxes, subsidies, exchange rates, supply conditions, and local pricing policies.</p></article>
+    </div>
+  </section>
+
+  <section class="section" id="dashboard">
+    <div class="section-head"><div><div class="kicker" style="color:#188b7b">Interactive Tableau Dashboard</div><h2>Global fuel prices & taxation</h2></div><p>Inspect the dashboard, use available filters, and hover over marks for additional details. Tableau may take a moment to load.</p></div>
+    <article class="chart-card">
+      <div class="chart-head"><div><h3>Global Fuel Prices and Taxation Trends (2020–2026)</h3><p>Interactive dashboard · Tableau Public</p></div><span class="pill">Explore data</span></div>
+      <iframe class="tableau-frame" title="Global Fuel Prices and Taxation Trends dashboard" loading="lazy" allowfullscreen src="https://public.tableau.com/views/GlobalAverageFuelPricesTrend2020-2026Dashboard_17934303683330/GlobalFuelPricesandTaxationTrends2020-2026?:showVizHome=no&:embed=yes&:tabs=no&:toolbar=yes"></iframe>
+      <div class="chart-note"><span>If the chart does not load, open it directly on Tableau Public.</span><a target="_blank" rel="noopener" href="https://public.tableau.com/views/GlobalAverageFuelPricesTrend2020-2026Dashboard_17934303683330/GlobalFuelPricesandTaxationTrends2020-2026">Open dashboard ↗</a></div>
+    </article>
+  </section>
+
+  <section class="section" id="story">
+    <div class="section-head"><div><div class="kicker" style="color:#b57912">Guided Data Story</div><h2>Fuel price comparison</h2></div><p>Follow the Tableau story sequence to explore the selected top-three-country comparison. Use each view's labels, legends, and tooltips to understand the measures.</p></div>
+    <article class="chart-card">
+      <div class="chart-head"><div><h3>Fuel Price Comparison — Top 3 Countries</h3><p>Guided story · Tableau Public</p></div><span class="pill" style="background:#fff3df;color:#94620e">Compare</span></div>
+      <iframe class="tableau-frame story" title="Fuel Price Comparison Top 3 Countries story" loading="lazy" allowfullscreen src="https://public.tableau.com/views/GlobalAverageFuelPricesTrend2020-2026Story_17934304566820/FuelPriceComparison-Top3Countriesstory?:showVizHome=no&:embed=yes&:tabs=no&:toolbar=yes"></iframe>
+      <div class="chart-note"><span>Use story navigation to move through the views.</span><a target="_blank" rel="noopener" href="https://public.tableau.com/views/GlobalAverageFuelPricesTrend2020-2026Story_17934304566820/FuelPriceComparison-Top3Countriesstory">Open story ↗</a></div>
+    </article>
+  </section>
+
+  <section class="section" id="methodology">
+    <div class="section-head"><div><div class="kicker" style="color:#537ed8">Methodology & Interpretation</div><h2>Read the analysis responsibly</h2></div><p>Meaningful comparisons depend on consistent units, time periods, and definitions. Keep these checks in mind when interpreting the charts.</p></div>
+    <div class="method-grid">
+      <article class="method"><h3>Check the measure</h3><p>Read chart titles, axes, legends, and tooltips. Confirm fuel type, currency, unit, and whether a value represents price, tax, or percentage.</p></article>
+      <article class="method"><h3>Compare like with like</h3><p>Check countries and dates are comparable. Missing values, different tax structures, and reporting changes may affect interpretation.</p></article>
+      <article class="method"><h3>Separate pattern from cause</h3><p>A chart may show association, but it does not alone prove that taxation caused a price change. Causal claims need additional evidence.</p></article>
+    </div>
+  </section>
+
+  <section class="section" id="outcomes">
+    <div class="section-head"><div><div class="kicker" style="color:#188b7b">Project Outcomes</div><h2>What this project demonstrates</h2></div></div>
+    <div class="outcomes">
+      <article class="outcome"><small>SKILL 01</small><h3>Data visualization</h3><p>Presenting data through interactive charts, comparisons, and a guided story.</p></article>
+      <article class="outcome"><small>SKILL 02</small><h3>Analytical thinking</h3><p>Identifying trends, comparing categories, and asking evidence-based questions.</p></article>
+      <article class="outcome"><small>SKILL 03</small><h3>Communication</h3><p>Organizing a complex topic into an overview, interactive analysis, and interpretation guidance.</p></article>
+      <article class="outcome"><small>PROJECT NOTE</small><h3>Tableau-powered exploration</h3><p>The embedded dashboard and story are the primary sources for the values displayed.</p></article>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="section-head"><div><div class="kicker" style="color:#b57912">Frequently Asked Questions</div><h2>Quick guide</h2></div></div>
+    <div class="faq">
+      <details><summary>What is the objective of this project?</summary><p>To explore global fuel-price and taxation trends from 2020 to 2026 through interactive Tableau views and country comparisons.</p></details>
+      <details><summary>Why can fuel prices differ between countries?</summary><p>Differences may reflect taxes, subsidies, exchange rates, transport and distribution costs, local policy, and international supply conditions.</p></details>
+      <details><summary>Why is the Tableau visualization taking time to load?</summary><p>The views are hosted by Tableau Public and require an internet connection. Refresh the page or use the direct Tableau link if the embed remains blank.</p></details>
+      <details><summary>Can I interact with the charts?</summary><p>Yes, where supported by the published view. Try selecting marks, hovering for tooltips, or using available filters and story navigation.</p></details>
+      <details><summary>Does this project prove that taxes cause higher fuel prices?</summary><p>No. The visualizations support comparisons and pattern-finding, but causal conclusions require additional evidence and context.</p></details>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div><div class="kicker">Explore Further</div><h2>Follow the data. Ask better questions.</h2><p>Open the visualizations directly to explore the published Tableau views in their full interactive experience.</p></div>
+    <div class="signature">MEET JAIN</div>
+  </section>
+</main>
+<footer><div class="footer-inner"><span>© 2026 MEET JAIN · Global Fuel Prices & Taxation Trends</span><span>Interactive data analytics project · Powered by Tableau Public</span></div></footer>
+<script>
+const toggle=document.getElementById('menuToggle'),links=document.getElementById('navLinks');
+toggle.addEventListener('click',()=>{const open=links.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');toggle.setAttribute('aria-expanded','false');}));
+</script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore global fuel prices and taxation trends from 2020 to 2026 with an interactive Tableau dashboard." />
+  <title>Global Fuel Prices & Taxation Trends | 2020–2026</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #647084;
+      --paper: #f5f7fb;
+      --card: #ffffff;
+      --accent: #176b87;
+      --line: #e5eaf1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      padding: 18px clamp(18px, 5vw, 72px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      font-weight: 800;
+      letter-spacing: .08em;
+      font-size: .9rem;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .period {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    main {
+      width: min(1240px, calc(100% - 32px));
+      margin: 42px auto 56px;
+    }
+    .intro { margin-bottom: 28px; }
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .75rem;
+      margin: 0 0 12px;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+      margin: 0;
+      max-width: 850px;
+    }
+    .description {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 760px;
+      margin: 18px 0 0;
+    }
+    .dashboard-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 16px 45px rgba(23, 32, 51, .07);
+    }
+    .dashboard-heading {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .dashboard-heading h2 {
+      font-size: 1rem;
+      margin: 0;
+    }
+    .live-label {
+      color: #24734d;
+      background: #eaf7ef;
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: .75rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .tableau-wrap {
+      width: 100%;
+      min-height: 700px;
+      position: relative;
+    }
+    .tableauPlaceholder { width: 100%; }
+    .tableauPlaceholder object { width: 100%; }
+    .note {
+      margin: 18px 4px 0;
+      color: var(--muted);
+      font-size: .85rem;
+      line-height: 1.6;
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 24px clamp(18px, 5vw, 72px);
+      color: var(--muted);
+      font-size: .85rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 640px) {
+      main { margin-top: 28px; }
+      .dashboard-heading { align-items: flex-start; flex-direction: column; }
+      .tableau-wrap { min-height: 900px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Fuel Insights</div>
+    <div class="period">Global overview · 2020–2026</div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="eyebrow">Interactive data story</p>
+      <h1>Global Fuel Prices &amp; Taxation Trends</h1>
+      <p class="description">
+        Explore how fuel prices and taxation have changed across countries from 2020 to 2026.
+        Use the dashboard controls to compare markets and investigate the trends.
+      </p>
+    </section>
+
+    <section class="dashboard-card" aria-label="Interactive Tableau dashboard">
+      <div class="dashboard-heading">
+        <h2>Fuel price comparison dashboard</h2>
+        <span class="live-label">Interactive dashboard</span>
+      </div>
+      <div class="tableau-wrap">
+        <div class="tableauPlaceholder" id="fuel-dashboard">
+          <noscript>
+            <a href="https://public.tableau.com/">
+              <img alt="Global Fuel Prices and Taxation Trends (2020–2026)"
+                   src="https://public.tableau.com/static/images/Gl/GlobalAverageFuelPricesTrend2020-2026Dashboard_17934303683330/GlobalFuelPricesandTaxationTrends2020-2026/1.png"
+                   style="width:100%; border:0;" />
+            </a>
+          </noscript>
+          <object class="tableauViz" style="display:none;">
+            <param name="host_url" value="https://public.tableau.com/" />
+            <param name="embed_code_version" value="3" />
+            <param name="site_root" value="" />
+            <param name="name" value="GlobalAverageFuelPricesTrend2020-2026Dashboard_17934303683330/GlobalFuelPricesandTaxationTrends2020-2026" />
+            <param name="tabs" value="no" />
+            <param name="toolbar" value="yes" />
+            <param name="static_image" value="https://public.tableau.com/static/images/Gl/GlobalAverageFuelPricesTrend2020-2026Dashboard_17934303683330/GlobalFuelPricesandTaxationTrends2020-2026/1.png" />
+            <param name="animate_transition" value="yes" />
+            <param name="display_static_image" value="yes" />
+            <param name="display_spinner" value="yes" />
+            <param name="display_overlay" value="yes" />
+            <param name="display_count" value="yes" />
+            <param name="language" value="en-US" />
+            <param name="filter" value="publish=yes" />
+          </object>
+        </div>
+      </div>
+    </section>
+    <p class="note">Dashboard content is hosted by Tableau Public. An internet connection is required to load the interactive visualization.</p>
+  </main>
+
+  <footer>
+    <span>Fuel Insights · Global energy data</span>
+    <span>Dashboard source: Tableau Public</span>
+  </footer>
+
+  <script>
+    (function () {
+      const container = document.getElementById("fuel-dashboard");
+      const viz = container.querySelector("object");
+
+      function sizeViz() {
+        const width = container.offsetWidth;
+        viz.style.display = "block";
+        viz.style.width = "100%";
+        viz.style.height = width > 500 ? Math.max(700, width * 0.75) + "px" : "900px";
+      }
+
+      sizeViz();
+      window.addEventListener("resize", sizeViz);
+
+      const script = document.createElement("script");
+      script.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
+      script.async = true;
+      viz.parentNode.insertBefore(script, viz);
+    })();
+  </script>
+</body>
+</html>
