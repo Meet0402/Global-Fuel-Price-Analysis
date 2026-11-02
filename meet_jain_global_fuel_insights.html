@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101b2d" />
+  <meta name="description" content="Global fuel prices and taxation trends from 2020 to 2026, presented by Meet Jain." />
+  <title>Global Fuel Insights | Meet Jain</title>
+  <link rel="preconnect" href="https://public.tableau.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #101b2d;
+      --navy-2: #172840;
+      --ink: #172033;
+      --muted: #667085;
+      --paper: #f5f7fa;
+      --white: #ffffff;
+      --line: #e3e8ef;
+      --accent: #f5a623;
+      --teal: #4cc9b0;
+      --radius: 22px;
+      --shadow: 0 18px 50px rgba(16, 27, 45, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      background: var(--navy);
+      color: #fff;
+      padding: 18px clamp(20px, 5vw, 76px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      color: var(--navy);
+      background: var(--accent);
+      font-size: 18px;
+    }
+    .nav {
+      display: flex;
+      gap: 26px;
+      font-size: 13px;
+      color: #d4deeb;
+    }
+    .nav a:hover { color: var(--accent); }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      background:
+        radial-gradient(circle at 82% 25%, rgba(76, 201, 176, .22), transparent 24%),
+        radial-gradient(circle at 95% 100%, rgba(245, 166, 35, .16), transparent 28%),
+        linear-gradient(135deg, var(--navy), #1b304b 72%, #223b56);
+      padding: clamp(54px, 8vw, 110px) clamp(20px, 8vw, 120px) clamp(64px, 9vw, 120px);
+    }
+    .hero-inner { max-width: 1180px; margin: auto; position: relative; z-index: 1; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--teal);
+    }
+    h1, h2, h3 { font-family: "Space Grotesk", sans-serif; line-height: 1.08; }
+    h1 {
+      max-width: 850px;
+      margin: 22px 0;
+      font-size: clamp(42px, 7.2vw, 88px);
+      letter-spacing: -.055em;
+    }
+    h1 span { color: var(--accent); }
+    .hero p {
+      max-width: 660px;
+      color: #c8d4e3;
+      font-size: clamp(16px, 2vw, 19px);
+      margin: 0;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 13px 21px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: transform .2s, background .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: var(--navy); }
+    .btn-outline { border: 1px solid rgba(255,255,255,.28); color: #fff; }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 780px;
+      margin-top: 56px;
+    }
+    .stat {
+      border-top: 1px solid rgba(255,255,255,.2);
+      padding-top: 16px;
+    }
+    .stat strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(22px, 3vw, 32px);
+      letter-spacing: -.04em;
+    }
+    .stat span { color: #b8c7d9; font-size: 12px; }
+    main { max-width: 1320px; margin: auto; padding: 70px clamp(18px, 5vw, 64px); }
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .section-heading h2 { font-size: clamp(28px, 4vw, 44px); margin: 10px 0 0; letter-spacing: -.04em; }
+    .section-heading p { color: var(--muted); max-width: 460px; margin: 0; font-size: 14px; }
+    .chart-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 42px;
+    }
+    .chart-top {
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+    .chart-top h3 { margin: 0 0 5px; font-size: 21px; letter-spacing: -.03em; }
+    .chart-top p { margin: 0; color: var(--muted); font-size: 13px; }
+    .chart-tag {
+      white-space: nowrap;
+      background: #fff4dc;
+      color: #8a5a00;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .viz-wrap { position: relative; width: 100%; background: #fff; }
+    .viz-wrap iframe {
+      display: block;
+      width: 100%;
+      border: 0;
+      min-height: 620px;
+      height: clamp(620px, 78vw, 1050px);
+    }
+    .viz-wrap.compact iframe { height: clamp(600px, 78vw, 950px); }
+    .chart-footer {
+      padding: 15px 24px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .insight-band {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin: 12px 0 64px;
+    }
+    .insight {
+      border-radius: var(--radius);
+      padding: 28px;
+      background: #eaf4f2;
+    }
+    .insight:nth-child(2) { background: #fff1d9; }
+    .insight .number {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: #397f73;
+    }
+    .insight:nth-child(2) .number { color: #9a650b; }
+    .insight h3 { margin: 12px 0 8px; font-size: 22px; }
+    .insight p { margin: 0; color: #52606e; font-size: 14px; }
+    .about {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 28px;
+      padding: clamp(28px, 5vw, 56px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+    .about h2 { margin: 12px 0; font-size: clamp(28px, 4vw, 42px); letter-spacing: -.04em; }
+    .about p { color: #c3cfdd; max-width: 650px; margin: 0; }
+    .about .signature {
+      flex-shrink: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: clamp(18px, 2.5vw, 25px);
+      color: var(--accent);
+      letter-spacing: .04em;
+    }
+    footer {
+      padding: 24px clamp(20px, 5vw, 76px);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: #788394;
+      font-size: 12px;
+    }
+    @media (max-width: 700px) {
+      .topbar { padding: 14px 18px; }
+      .nav { gap: 14px; font-size: 12px; }
+      .nav a:nth-child(2) { display: none; }
+      .hero { padding: 58px 22px 64px; }
+      .hero-stats { gap: 10px; margin-top: 42px; }
+      .stat span { font-size: 11px; }
+      main { padding: 48px 14px; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 12px; }
+      .chart-top { padding: 20px; align-items: start; }
+      .chart-tag { display: none; }
+      .viz-wrap iframe, .viz-wrap.compact iframe { min-height: 680px; height: 920px; }
+      .chart-footer { padding: 14px 18px; }
+      .insight-band { grid-template-columns: 1fr; margin-bottom: 44px; }
+      .about { display: block; border-radius: 22px; }
+      .about .signature { margin-top: 24px; }
+    }
+    @media (max-width: 380px) {
+      .brand { font-size: 12px; }
+      .brand-mark { width: 32px; height: 32px; }
+      .nav { gap: 10px; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .stat { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Meet Jain home">
+      <span class="brand-mark">MJ</span>
+      <span>MEET JAIN</span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#comparison">Country Comparison</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Data story · 2020—2026</div>
+      <h1>Global fuel prices.<br /><span>Real-world impact.</span></h1>
+      <p>Explore how fuel prices and taxation have shifted across the world. Interactive Tableau dashboards reveal long-term trends, country comparisons, and the forces shaping what consumers pay at the pump.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#dashboard">Explore the dashboard <span aria-hidden="true">↘</span></a>
+        <a class="btn btn-outline" href="#comparison">Compare countries</a>
+      </div>
+      <div class="hero-stats" aria-label="Project overview">
+        <div class="stat"><strong>2020–2026</strong><span>Time period covered</span></div>
+        <div class="stat"><strong>Global</strong><span>Country-level perspective</span></div>
+        <div class="stat"><strong>Interactive</strong><span>Explore filters and charts</span></div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="dashboard">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow" style="color:#287f73">01 / Overview</div>
+          <h2>Fuel prices & taxation</h2>
+        </div>
+        <p>A broad view of global fuel price movements and taxation trends over the selected period.</p>
+      </div>
+      <article class="chart-card">
+        <div class="chart-top">
+          <div>
+            <h3>Global Fuel Prices and Taxation Trends</h3>
+            <p>2020–2026 · Interactive dashboard</p>
+          </div>
+          <span class="chart-tag">Explore data</span>
+        </div>
+        <div class="viz-wrap">
+          <iframe
+            title="Global Fuel Prices and Taxation Trends 2020–2026"
+            src="https://public.tableau.com/views/GlobalAverageFuelPricesTrend2020-2026Dashboard_17934303683330/GlobalFuelPricesandTaxationTrends2020-2026?:showVizHome=no&:embed=yes&:tabs=no&:toolbar=yes"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="chart-footer"><span>Use the chart controls to explore the data.</span><span>Source: Tableau Public</span></div>
+      </article>
+    </section>
+
+    <section id="comparison">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow" style="color:#b57912">02 / Comparison</div>
+          <h2>Countries in focus</h2>
+        </div>
+        <p>Compare fuel prices across leading countries and investigate how national differences emerge.</p>
+      </div>
+      <article class="chart-card">
+        <div class="chart-top">
+          <div>
+            <h3>Fuel Price Comparison — Top 3 Countries</h3>
+            <p>Country comparison · Interactive Tableau story</p>
+          </div>
+          <span class="chart-tag">Compare</span>
+        </div>
+        <div class="viz-wrap compact">
+          <iframe
+            title="Fuel Price Comparison Top 3 Countries"
+            src="https://public.tableau.com/views/GlobalAverageFuelPricesTrend2020-2026Story_17934304566820/FuelPriceComparison-Top3Countriesstory?:showVizHome=no&:embed=yes&:tabs=no&:toolbar=yes"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="chart-footer"><span>Interact with the story to navigate its views.</span><span>Source: Tableau Public</span></div>
+      </article>
+    </section>
+
+    <div class="insight-band" aria-label="How to explore">
+      <article class="insight">
+        <div class="number">01 — TREND</div>
+        <h3>Track changes over time</h3>
+        <p>Use the overview to follow shifts in fuel prices and taxation across the 2020–2026 timeline.</p>
+      </article>
+      <article class="insight">
+        <div class="number">02 — COMPARE</div>
+        <h3>Look across countries</h3>
+        <p>Use the comparison story to examine differences between countries and place price changes in context.</p>
+      </article>
+    </div>
+
+    <section class="about" id="about">
+      <div>
+        <div class="eyebrow">Project author</div>
+        <h2>Data, made easier to explore.</h2>
+        <p>This interactive data project brings global fuel-price information into one accessible experience. The visualizations are embedded from Tableau Public.</p>
+      </div>
+      <div class="signature">MEET JAIN</div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 MEET JAIN · Global Fuel Insights</span>
+    <span>Built for responsive viewing · Powered by Tableau Public</span>
+  </footer>
+</body>
+</html>
